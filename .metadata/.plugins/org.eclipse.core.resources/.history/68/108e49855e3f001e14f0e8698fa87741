@@ -1,0 +1,9 @@
+package com.test.app.domain.mapper;
+
+public interface AttachmentMapper {
+    AttachmentDto selectAttachmentById(Long id);
+    List<AttachmentDto> selectAttachmentsByPostId(Long postId);
+    void insertAttachment(AttachmentDto attachmentDto);
+    void updateAttachment(AttachmentDto attachmentDto);
+    void deleteAttachment(Long id);
+}

@@ -1,0 +1,9 @@
+package com.test.app.domain.mapper;
+
+public interface ReplyMapper {
+    ReplyDto selectReplyById(Long id);
+    List<ReplyDto> selectRepliesByCommentId(Long commentId);
+    void insertReply(ReplyDto replyDto);
+    void updateReply(ReplyDto replyDto);
+    void deleteReply(Long id);
+}

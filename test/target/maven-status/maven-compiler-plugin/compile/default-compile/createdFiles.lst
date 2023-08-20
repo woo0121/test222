@@ -1,0 +1,10 @@
+com\test\app\controller\SimpleController.class
+com\test\app\config\WebMvcConfig.class
+com\test\app\config\auth\CustomAuthenticationEntryPoint.class
+com\test\app\controller\HomeController.class
+com\test\app\config\auth\CustomLoginSuccessHandler.class
+com\test\app\config\auth\CustomLogoutSuccessHandler.class
+com\test\app\config\auth\CustomLogoutHandler.class
+com\test\app\config\SecurityConfig.class
+com\test\app\config\auth\CustomAccessDeniedHandler.class
+com\test\app\config\auth\CustomAuthenticationFailureHandler.class

@@ -1,0 +1,13 @@
+package com.test.app.domain.mapper;
+
+import java.util.List;
+
+import com.test.app.domain.dto.LikeDislikeDto;
+
+public interface LikeDislikeMapper {
+    LikeDislikeDto selectLikeDislikeById(Long id);
+    List<LikeDislikeDto> selectLikeDislikesByPostId(Long postId);
+    void insertLikeDislike(LikeDislikeDto likeDislikeDto);
+    void updateLikeDislike(LikeDislikeDto likeDislikeDto);
+    void deleteLikeDislike(Long id);
+}

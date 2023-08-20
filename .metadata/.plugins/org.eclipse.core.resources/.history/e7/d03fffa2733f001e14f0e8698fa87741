@@ -1,0 +1,62 @@
+package com.test.app.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.test.app.domain.dto.TagDto;
+import com.test.app.domain.mapper.TagMapper;
+
+@RestController
+@RequestMapping("/tags")
+public class TagController {
+
+	 @Autowired
+	    private TagMapper tagMapper; // 변수 이름 변경
+
+	    @PostMapping
+	    public ResponseEntity<?> createTag(@RequestBody TagDto tagDto) {
+	        tagMapper.insertTag(tagDto); // 변경
+	        return ResponseEntity.status(HttpStatus.CREATED).build();
+	    }
+
+	    @PutMapping("/{id}")
+	    public ResponseEntity<?> updateTag(@PathVariable Long id, @RequestBody TagDto tagDto) {
+	        tagMapper.updateTag(tagDto); // 변경
+	        return ResponseEntity.ok().build();
+	    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTag(@PathVariable Long id) {
+        tagService.deleteTag(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TagDto> getTag(@PathVariable Long id) {
+        TagDto tagDto = tagMapper.selectTagById(id); // 변경
+        return ResponseEntity.ok(tagDto);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<TagDto>> getAllTags() {
+        List<TagDto> tags = tagMapper.selectAllTags(); // 변경
+        return ResponseEntity.ok(tags);
+    }
+
+    @GetMapping("/name/{tagName}")
+    public ResponseEntity<List<TagDto>> getTagsByName(@PathVariable String tagName) {
+    	List<TagDto> tags = tagMapper.getTagsByName(tagName);
+        return ResponseEntity.ok(tags);
+    }
+}

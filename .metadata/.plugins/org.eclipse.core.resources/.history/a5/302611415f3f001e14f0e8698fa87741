@@ -1,0 +1,12 @@
+package com.test.app.domain.mapper;
+
+import java.util.List;
+
+import com.test.app.domain.dto.BookmarkDto;
+
+public interface BookmarkMapper {
+    BookmarkDto selectBookmarkById(Long id);
+    List<BookmarkDto> selectBookmarksByUserId(Long userId);
+    void insertBookmark(BookmarkDto bookmarkDto);
+    void deleteBookmark(Long id);
+}

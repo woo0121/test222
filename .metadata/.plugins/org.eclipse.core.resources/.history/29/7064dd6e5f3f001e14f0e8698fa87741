@@ -1,0 +1,13 @@
+package com.test.app.domain.mapper;
+
+import java.util.List;
+
+import com.test.app.domain.dto.TagDto;
+
+public interface TagMapper {
+    TagDto selectTagById(Long id);
+    List<TagDto> selectAllTags();
+    void insertTag(TagDto tagDto);
+    void updateTag(TagDto tagDto);
+    void deleteTag(Long id);
+}

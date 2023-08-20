@@ -1,0 +1,5 @@
+package com.test.app.domain.mapper;
+
+public interface TagMapper {
+
+}

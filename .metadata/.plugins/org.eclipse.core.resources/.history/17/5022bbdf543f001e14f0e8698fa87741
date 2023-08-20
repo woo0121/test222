@@ -1,0 +1,71 @@
+package com.test.app.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.test.app.domain.dto.AppDto;
+import com.test.app.domain.mapper.AppMapper;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@RequestMapping("/app")
+public class AppController {
+
+    @Autowired
+    private AppMapper appMapper;
+
+    // JSP 뷰 관련
+    @GetMapping("/join")
+    public ModelAndView getJoinPage() {
+        return new ModelAndView("/WEB-INF/views/join");
+    }
+
+    // User 관련 기능
+    @GetMapping("/users")
+    public List<AppDto> getUsers() {
+        return appMapper.getUserList();
+    }
+
+    @PostMapping("/users")
+    public void createUser(@RequestBody AppDto user) {
+        appMapper.insertUser(user);
+    }
+
+    @GetMapping("/users/{username}")
+    public AppDto getUserByUsername(@PathVariable String username) {
+        return appMapper.selectUser(username);
+    }
+
+    // Board 관련 기능
+    @GetMapping("/boards")
+    public List<AppDto> getAllBoards() {
+        return appMapper.findAllBoards();
+    }
+
+    @GetMapping("/boards/{id}")
+    public AppDto getBoardById(@PathVariable Long id) {
+        return appMapper.findBoardById(id);
+    }
+
+    @PostMapping("/boards")
+    public void createBoard(@RequestBody AppDto board) {
+        appMapper.createBoard(board);
+    }
+
+    @PutMapping("/boards/{id}")
+    public void updateBoard(@PathVariable Long id, @RequestBody AppDto board) {
+        board.setId(id);
+        appMapper.updateBoard(board);
+    }
+
+    @DeleteMapping("/boards/{id}")
+    public void deleteBoard(@PathVariable Long id) {
+        appMapper.deleteBoard(id);
+    }
+}
+
+

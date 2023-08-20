@@ -1,0 +1,14 @@
+package com.test.app.domain.dto;
+
+import lombok.Data;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AppDto {
+    private Long id;
+    private String title;
+    private String content;
+    private String writer;
+    private String password;
+}

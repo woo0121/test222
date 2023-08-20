@@ -1,0 +1,9 @@
+package com.test.app.domain.mapper;
+
+public interface CommentMapper {
+    CommentDto selectCommentById(Long id);
+    List<CommentDto> selectCommentsByPostId(Long postId);
+    void insertComment(CommentDto commentDto);
+    void updateComment(CommentDto commentDto);
+    void deleteComment(Long id);
+}

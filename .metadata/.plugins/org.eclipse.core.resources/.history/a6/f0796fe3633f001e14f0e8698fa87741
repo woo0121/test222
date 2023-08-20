@@ -1,0 +1,45 @@
+package com.test.app.controller;
+
+@RestController
+@RequestMapping("/attachments")
+public class AttachmentController {
+
+    @Autowired
+    private AttachmentService attachmentService;
+
+    @PostMapping
+    public ResponseEntity<?> createAttachment(@RequestBody AttachmentDto attachmentDto) {
+        attachmentService.createAttachment(attachmentDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateAttachment(@PathVariable Long id, @RequestBody AttachmentDto attachmentDto) {
+        attachmentService.updateAttachment(id, attachmentDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAttachment(@PathVariable Long id) {
+        attachmentService.deleteAttachment(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AttachmentDto> getAttachment(@PathVariable Long id) {
+        AttachmentDto attachmentDto = attachmentService.getAttachment(id);
+        return ResponseEntity.ok(attachmentDto);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<AttachmentDto>> getAllAttachments() {
+        List<AttachmentDto> attachments = attachmentService.getAllAttachments();
+        return ResponseEntity.ok(attachments);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<AttachmentDto>> getAttachmentsByUserId(@PathVariable Long userId) {
+        List<AttachmentDto> attachments = attachmentService.getAttachmentsByUserId(userId);
+        return ResponseEntity.ok(attachments);
+    }
+}

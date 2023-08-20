@@ -1,0 +1,13 @@
+package com.test.app.domain.mapper;
+
+import java.util.List;
+
+import com.test.app.domain.dto.CommentDto;
+
+public interface CommentMapper {
+    CommentDto selectCommentById(Long id);
+    List<CommentDto> selectCommentsByPostId(Long postId);
+    void insertComment(CommentDto commentDto);
+    void updateComment(CommentDto commentDto);
+    void deleteComment(Long id);
+}

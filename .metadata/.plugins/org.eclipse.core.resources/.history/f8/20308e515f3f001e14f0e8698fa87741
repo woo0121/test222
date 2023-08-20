@@ -1,0 +1,13 @@
+package com.test.app.domain.mapper;
+
+import java.util.List;
+
+import com.test.app.domain.dto.ReplyDto;
+
+public interface ReplyMapper {
+    ReplyDto selectReplyById(Long id);
+    List<ReplyDto> selectRepliesByCommentId(Long commentId);
+    void insertReply(ReplyDto replyDto);
+    void updateReply(ReplyDto replyDto);
+    void deleteReply(Long id);
+}

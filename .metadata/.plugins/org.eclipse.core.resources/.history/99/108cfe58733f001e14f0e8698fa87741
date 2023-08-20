@@ -1,0 +1,56 @@
+package com.test.app.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.test.app.domain.dto.LikeDislikeDto;
+import com.test.app.domain.mapper.LikeDislikeMapper;
+
+@RestController
+@RequestMapping("/likesdislikes")
+public class LikeDislikeController {
+
+    @Autowired
+    private LikeDislikeMapper likeDislikeMapper;
+
+    @PostMapping
+    public ResponseEntity<?> createLikeDislike(@RequestBody LikeDislikeDto likeDislikeDto) {
+        likeDislikeMapper.insertLikeDislike(likeDislikeDto); // 변경
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateLikeDislike(@PathVariable Long id, @RequestBody LikeDislikeDto likeDislikeDto) {
+        likeDislikeMapper.updateLikeDislike(likeDislikeDto); // 변경
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteLikeDislike(@PathVariable Long id) {
+    	likeDislikeMapper.deleteLikeDislike(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<LikeDislikeDto>> getLikeDislikesByUserId(@PathVariable Long userId) {
+        List<LikeDislikeDto> likeDislikes = likeDislikeMapper.getLikeDislikesByUserId(userId);
+        return ResponseEntity.ok(likeDislikes);
+    }
+
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<List<LikeDislikeDto>> getLikeDislikesByPostId(@PathVariable Long postId) {
+        List<LikeDislikeDto> likeDislikes = likeDislikeMapper.getLikeDislikesByPostId(postId);
+        return ResponseEntity.ok(likeDislikes);
+    }
+}
